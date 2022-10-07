@@ -1,6 +1,6 @@
 use std::time::Duration;
 
-use crate::{NUM_COLS, NUM_ROWS, frame::{Drawable, Frame}, shot::Shot};
+use crate::{NUM_COLS, NUM_ROWS, frame::{Drawable, Frame}, shot::Shot, invaders::Invaders, MAX_SHOTS};
 
 pub struct Player {
     pub x: usize,
@@ -26,7 +26,7 @@ impl Player {
         }
     }
     pub fn shoot(&mut self) -> bool {
-        if self.shots.len() <2 {
+        if self.shots.len() < MAX_SHOTS {
             self.shots.push(Shot::new(self.x, self.y - 1));
             true
         } else {
@@ -42,6 +42,18 @@ impl Player {
 
     }
 
+    pub fn detect_hits(&mut self, invaders: &mut Invaders) -> bool{
+        let mut hit_something = false;
+        for shot in self.shots.iter_mut(){
+            if !shot.exploding{
+                if invaders.kill_invader_at(shot.x, shot.y){
+                    hit_something = true;
+                    shot.expode();
+                }
+            }
+        }     
+        hit_something
+    }
 }
 
 impl Drawable for Player {
