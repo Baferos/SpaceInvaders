@@ -17,6 +17,11 @@ pub struct Invaders {
     pub move_timer: Timer,
     pub direction: i32,
 }
+impl Default for Invaders {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
 impl Invaders {
     pub fn new() -> Self {

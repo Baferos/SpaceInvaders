@@ -1,7 +1,7 @@
 use crate::{NUM_COLS, NUM_ROWS};
 
 pub type Frame = Vec<Vec<&'static str>>;
-
+#[allow(clippy::same_item_push)]
 pub fn new_frame() -> Frame {
     let mut cols = Vec::with_capacity(NUM_COLS);
     for _ in 0..NUM_COLS {
