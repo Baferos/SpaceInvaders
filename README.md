@@ -5,5 +5,5 @@ Space invaders is a small project in Rust of terminal arcade game, based of the 
 ### How to bulid the game
 
 ```bash
-cargo run --realease
+cargo run --release
 ```
